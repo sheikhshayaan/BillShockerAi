@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% set step = 3 %}
+{% block title %}Results · Bill Shocker{% endblock %}
+{% block mainclass %}flat{% endblock %}
+{% block content %}
+<script type="application/json" id="questions">{{ questions|tojson }}</script>
+<section id="results" data-tariff-verified="{{ 'yes' if tariff.verified else 'no' }}" class="stack-lg" style="padding-top:.4rem">
+  <div id="synthetic-banner" class="hidden callout"><b>Demo data.</b> This is a made-up bill.</div>
+  <div id="body" class="stack-lg"></div>
+
+  <div class="panel">
+    <h2>About tariff rates</h2>
+    <p class="small muted" style="margin-top:.4rem">{{ tariff.message if not tariff.verified else 'Verified tariff version ' ~ tariff.version ~ ', effective ' ~ tariff.effective_from ~ '.' }}</p>
+  </div>
+
+  <div class="btnrow">
+    <a href="/review" class="btn btn-ghost" style="text-decoration:none;flex:1;text-align:center">Back to edit</a>
+    <button id="clear" class="btn btn-ghost" style="flex:1">Clear my data</button>
+  </div>
+  <p class="tiny muted">Next up: what-if simulator and a shareable summary.</p>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/charts.js') }}"></script><script src="{{ url_for('static', filename='js/results.js') }}"></script>{% endblock %}

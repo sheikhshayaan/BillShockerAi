@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% set step = 1 %}
+{% block content %}
+<section class="hero-up">
+  <span class="badge">FESCO bills</span>
+  <h1>Snap your bill. See why it's high.</h1>
+  <p>Photograph your electricity bill, check what we read, and get a plain-language breakdown with what to look at next month.</p>
+  <ol class="ledger">
+    <li><b>Photograph</b><span>Cover your name, address and IDs before it leaves your phone.</span></li>
+    <li><b>Check</b><span>Compare each value we read with the paper bill. Nothing is guessed.</span></li>
+    <li><b>Understand</b><span>Totals are calculated here, then explained in English or Urdu.</span></li>
+  </ol>
+</section>
+
+<div class="stack" style="margin-top:1.4rem">
+  {% if synthetic %}
+  <div class="callout"><b>Demo mode.</b> No AI call is made. Any photo returns a made-up bill so you can try every screen.</div>
+  {% elif not ai_ready %}
+  <div class="callout bad"><b>AI reading isn't set up</b> (no API key for {{ provider_name }}). You can still type your bill values in by hand.</div>
+  {% endif %}
+
+  <form id="upload-form" class="stack" novalidate>
+    <label for="bill" id="dropzone" class="drop">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6H8l1.2-1.8A1 1 0 0 1 10 3.8h4a1 1 0 0 1 .8.4L16 6h1.5A2.5 2.5 0 0 1 20 8.5v8A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5z"/><circle cx="12" cy="12.5" r="3.2"/></svg>
+      <div id="drop-label" class="t">Take a photo or choose one</div>
+      <div id="limits" data-max-mb="{{ max_mb }}" class="small muted" style="margin-top:.25rem">JPEG, PNG or WebP, up to {{ max_mb }} MB</div>
+      <input id="bill" name="bill" type="file" accept="image/jpeg,image/png,image/webp" capture="environment" class="sr-only">
+    </label>
+
+    <section id="mask-panel" class="hidden maskpanel" aria-labelledby="mask-title">
+      <h2 id="mask-title">Cover your personal details</h2>
+      <p class="small muted" style="margin-top:.35rem">Drag over anything personal to black it out. This happens on your device, and the original photo is never sent.</p>
+      <div class="keepcover">
+        <div class="cover"><b>Cover</b>Name, address, consumer ID, reference and meter numbers, QR codes, barcode, meter photo, GPS text</div>
+        <div class="keep"><b>Keep visible</b>Dates, readings, units, charges, totals, history table</div>
+      </div>
+      <div class="canvaswrap">
+        <canvas id="mask-canvas" style="touch-action:none;display:block;margin:0 auto;width:auto;height:auto;max-width:100%;max-height:70vh;cursor:crosshair" aria-label="Your bill photo. Drag to cover personal details."></canvas>
+      </div>
+      <div class="row" style="margin-top:.7rem">
+        <button type="button" id="mask-undo" class="btn btn-ghost" style="padding:.5rem 1rem" disabled>Undo</button>
+        <button type="button" id="mask-clear" class="btn btn-ghost" style="padding:.5rem 1rem" disabled>Clear all</button>
+        <span id="mask-count" class="small muted" style="margin-left:auto" aria-live="polite">Nothing covered yet</span>
+      </div>
+      <label class="checkrow"><input type="checkbox" id="no-pii"><span>I checked: no personal details are visible in this photo.</span></label>
+    </section>
+
+    {% if provider_id == "gemini" and not synthetic %}
+    <div class="callout"><b>Using a free Gemini key?</b> Google says free-tier requests may be used to improve its products. Cover your details above, or use a paid key.</div>
+    {% endif %}
+    <div id="error" role="alert" class="hidden callout bad"></div>
+    <div id="warnings" class="hidden callout"></div>
+
+    <button id="go" type="submit" disabled class="btn btn-primary btn-block"><span id="go-label">Choose a photo first</span></button>
+    <div style="text-align:center"><button id="manual" type="button" class="link">Enter the values by hand instead</button></div>
+  </form>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/upload.js') }}"></script>{% endblock %}

@@ -1,0 +1,15 @@
+{
+  "_readme": "Editable, versioned tariff data. Add a new entry to `versions` when rates change; never edit old ones. An entry is only used if status is 'verified' AND effective_from AND categories are filled in. Fill `source` with the official notification (NEPRA/FESCO/Power Division) you copied the rates from.",
+  "schema_version": 1,
+  "utility": "FESCO",
+  "versions": [
+    {
+      "id": "placeholder-unverified",
+      "status": "unverified",
+      "effective_from": null,
+      "source": {"name": null, "url": null, "retrieved_on": null},
+      "applicability": "PLACEHOLDER. No rates have been verified against an official source. Do not use for estimates.",
+      "categories": {}
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% set step = 2 %}
+{% block title %}Review · Bill Shocker{% endblock %}
+{% block content %}
+<script type="application/json" id="specs">{{ specs|tojson }}</script>
+<section class="stack" style="padding-top:.4rem">
+  <div>
+    <h1 style="font-size:clamp(1.9rem,7vw,2.6rem);font-weight:800">Check what we read</h1>
+    <p class="muted" style="margin-top:.5rem">Compare each value with your paper bill. Fix anything wrong, then tick <b>Confirmed</b>. If a value isn't on your bill, choose <b>Not on bill</b>. Nothing is guessed for you.</p>
+    <div class="progress" aria-hidden="true"><i id="progress-bar" style="width:0"></i></div>
+    <div class="tiny muted" id="progress-text" style="margin-top:.35rem"></div>
+  </div>
+  <div id="synthetic-banner" class="hidden callout"><b>Demo data.</b> This is a made-up bill.</div>
+  <div id="notes" class="stack"></div>
+
+  <details id="checks" class="panel" open>
+    <summary class="row between"><h2 style="font-size:1.1rem">Automatic checks</h2><span id="checks-pill" class="chip plain"></span></summary>
+    <ul id="findings" class="findings" aria-live="polite"></ul>
+  </details>
+
+  <div id="form" class="stack"></div>
+</section>
+
+<div class="dock">
+  <div class="wrap">
+    <div class="row">
+      <button id="confirm-all" class="btn btn-ghost" style="flex:1">Confirm all</button>
+      <button id="continue" class="btn btn-primary" style="flex:1.4">See my results</button>
+    </div>
+    <div id="continue-msg" role="alert" class="hidden small" style="color:var(--bad-ink);margin-top:.5rem"></div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/review.js') }}"></script>{% endblock %}

@@ -1,0 +1,42 @@
+{
+  "_note": "SYNTHETIC test data. Not a real bill; numbers are invented and say nothing about real tariffs.",
+  "is_electricity_bill": true,
+  "legibility": "good",
+  "utility_seen": "SYNTHETIC-DEMO",
+  "fields": {
+    "billing_month": {"value": "SEP-25", "source_text": "Bill Month SEP-25"},
+    "issue_date": {"value": "05 OCT 25", "source_text": "Issue Date 05 OCT 25"},
+    "due_date": {"value": "15 OCT 25", "source_text": "Due Date 15 OCT 25"},
+    "reading_date": {"value": "02 OCT 25", "source_text": "Reading Date 02 OCT 25"},
+    "tariff_category": {"value": "A-1(a)", "source_text": "Tariff A-1(a)"},
+    "sanctioned_load_kw": {"value": "3", "source_text": "Load 3 kW"},
+    "protected_indicator_text": {"value": null, "source_text": null},
+    "previous_reading": {"value": "10000", "source_text": "Previous 10000"},
+    "present_reading": {"value": "10250", "source_text": "Present 10250"},
+    "multiplying_factor": {"value": "1", "source_text": "MF 1"},
+    "units_consumed": {"value": "250", "source_text": "Units 250"},
+    "energy_charge": {"value": "4000", "source_text": "Cost of Electricity 4,000"},
+    "fixed_charges": {"value": null, "source_text": null},
+    "fuel_price_adjustment": {"value": "250", "source_text": "FPA 250"},
+    "quarterly_adjustment": {"value": null, "source_text": null},
+    "electricity_duty": {"value": "100", "source_text": "E. Duty 100"},
+    "gst": {"value": "723", "source_text": "GST 723"},
+    "tv_fee": {"value": "35", "source_text": "TV Fee 35"},
+    "further_tax": {"value": null, "source_text": null},
+    "current_bill_total": {"value": "5108", "source_text": "Current Bill 5,108"},
+    "arrears": {"value": "1200", "source_text": "Arrears 1,200"},
+    "payable_within_due_date": {"value": "6308", "source_text": "Payable Within Due Date 6,308"},
+    "late_payment_surcharge": {"value": "315", "source_text": "LPS 315"},
+    "payable_after_due_date": {"value": "6623", "source_text": "Payable After Due Date 6,623"}
+  },
+  "other_charges": [],
+  "history": [
+    {"month": "SEP-25", "units": "250", "bill_amount": "5108"},
+    {"month": "AUG-25", "units": "310", "bill_amount": "6200"},
+    {"month": "JUL-25", "units": "280", "bill_amount": "5600"},
+    {"month": "JUN-25", "units": "240", "bill_amount": "4800"},
+    {"month": "MAY-25", "units": "190", "bill_amount": "3500"},
+    {"month": "APR-25", "units": "150", "bill_amount": "2700"}
+  ],
+  "notes": "Synthetic demo data."
+}

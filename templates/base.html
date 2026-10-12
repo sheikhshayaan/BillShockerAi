@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>{% block title %}Bill Shocker{% endblock %}</title>
+  <meta name="description" content="Snap your bill. Understand why it's high. Know what to change next month.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..600&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+  <div class="banner">Your photo is processed in memory and never stored.</div>
+  <header class="wrap top row">
+    <a href="/" class="brand" aria-label="Bill Shocker home">billshocker</a>
+    {% set cur = step | default(0) %}
+    {% if cur %}<nav class="steps" aria-label="Progress">{% for n, label in [(1, 'Upload'), (2, 'Check'), (3, 'Results')] %}<span class="{{ 'on' if cur == n else 'done' if cur > n else '' }}"{% if cur == n %} aria-current="step"{% endif %}>{{ label }}</span>{% endfor %}</nav>{% endif %}
+  </header>
+  <main class="wrap {% block mainclass %}{% endblock %}">{% block content %}{% endblock %}</main>
+  <footer class="wrap foot">This app does not store your photo. It is processed in memory and discarded. To read it, the covered photo is sent to {{ provider_name }}.</footer>
+  <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
