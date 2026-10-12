@@ -22,9 +22,9 @@
   <form id="upload-form" class="stack" novalidate>
     <label for="bill" id="dropzone" class="drop">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6H8l1.2-1.8A1 1 0 0 1 10 3.8h4a1 1 0 0 1 .8.4L16 6h1.5A2.5 2.5 0 0 1 20 8.5v8A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5z"/><circle cx="12" cy="12.5" r="3.2"/></svg>
-      <div id="drop-label" class="t">Take a photo or choose one</div>
+      <div id="drop-label" class="t">Take a photo or choose from gallery</div>
       <div id="limits" data-max-mb="{{ max_mb }}" class="small muted" style="margin-top:.25rem">JPEG, PNG or WebP, up to {{ max_mb }} MB</div>
-      <input id="bill" name="bill" type="file" accept="image/jpeg,image/png,image/webp" capture="environment" class="sr-only">
+      <input id="bill" name="bill" type="file" accept="image/jpeg,image/png,image/webp" class="sr-only">
     </label>
 
     <section id="mask-panel" class="hidden maskpanel" aria-labelledby="mask-title">
